@@ -1,11 +1,11 @@
-// import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     kotlin("jvm") version "1.8.0" // kotlin!!
     id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.2.0"
 
     // if you are using libraries, but they return errors when loading ingame, you may want to use this
-    // id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     // and if you do, also build your jars like this ./gradle clean build shadowJar
 }
 
@@ -16,7 +16,7 @@ bukkitPluginYaml  {
     // read more about this way of setting up the plugin.yml here:
     // https://github.com/jpenilla/resource-factory/tree/master
 
-    main.set("me.wanttobee.template.MinecraftPlugin")
+    main.set("me.wanttobee.minetensor.MinecraftPlugin")
     apiVersion.set("1.20")
 
     // name.set("Template") // inherits from settings.gradle, but you can override it. same goes for version
@@ -83,12 +83,12 @@ tasks.processResources {
     }
 }
 
-// // this piece of code makes it so when building a jar with ./gradle clean build shadowJar
-// // that the 2 jars you will get are ProjectName.jar and ProjectName-1.0.jar
-// // here the ProjectName.jar is the correct one which you should be using
-// tasks.withType<ShadowJar> {
-//     archiveClassifier.set("")
-//     archiveVersion.set("")
-//     archiveBaseName.set(project.name)
-// }
+// this piece of code makes it so when building a jar with ./gradle clean build shadowJar
+// that the 2 jars you will get are ProjectName.jar and ProjectName-1.0.jar
+// here the ProjectName.jar is the correct one which you should be using
+tasks.withType<ShadowJar> {
+    archiveClassifier.set("")
+    archiveVersion.set("")
+    archiveBaseName.set(project.name)
+}
 
